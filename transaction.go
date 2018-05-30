@@ -27,7 +27,8 @@ type TransactionHeader struct {
 	DelaySec         Varuint32 `json:"delay_sec"` // number of secs to delay, making it cancellable for that duration
 }
 
-type Transaction struct { // WARN: is a `variant` in C++, can be a SignedTransaction or a Transaction.
+type Transaction struct {
+	// WARN: is a `variant` in C++, can be a SignedTransaction or a Transaction.
 	TransactionHeader
 
 	ContextFreeActions []*Action    `json:"context_free_actions"`
@@ -45,7 +46,7 @@ func (tx *Transaction) Fill(api *API) ([]byte, error) {
 	var err error
 
 	api.lastGetInfoLock.Lock()
-	if !api.lastGetInfoStamp.IsZero() && time.Now().Add(-1*time.Second).Before(api.lastGetInfoStamp) {
+	if !api.lastGetInfoStamp.IsZero() && time.Now().Add(-1 * time.Second).Before(api.lastGetInfoStamp) {
 		info = api.lastGetInfo
 	} else {
 		info, err = api.GetInfo()

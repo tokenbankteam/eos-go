@@ -216,8 +216,8 @@ type SignedBlockHeader struct {
 
 type SignedBlock struct {
 	SignedBlockHeader
-	Transactions    []Transaction `json:"transactions"`
-	BlockExtensions []*Extension  `json:"block_extensions"`
+	Transactions    []TransactionReceipt `json:"transactions"`
+	BlockExtensions []*Extension         `json:"block_extensions"`
 }
 
 func (m *SignedBlock) String() string {
@@ -232,6 +232,20 @@ type TransactionReceiptHeader struct {
 	Status               TransactionStatus `json:"status"`
 	CPUUsageMicroSeconds uint32            `json:"cpu_usage_us"`
 	NetUsageWords        Varuint32         `json:"net_usage_words"`
+}
+
+type TrxHeader struct {
+	Id                    string   `json:"id"`
+	Signatures            []string `json:"signatures"`
+	Compression           string   `json:"compression"`
+	PackedContextFreeData string   `json:"packed_context_free_data"`
+	ContextFreeData       []string `json:"context_free_data"`
+	PackedTrx             string   `json:"packed_trx"`
+}
+
+type Trx struct {
+	TrxHeader
+	Transaction Transaction `json:"transaction"`
 }
 
 type TransactionReceipt struct {
