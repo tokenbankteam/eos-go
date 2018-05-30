@@ -54,7 +54,7 @@ func (m *HandshakeMessage) String() string {
 type GoAwayReason uint8
 
 const (
-	GoAwayNoReason = uint8(iota)
+	GoAwayNoReason       = uint8(iota)
 	GoAwaySelfConnect
 	GoAwayDuplicate
 	GoAwayWrongChain
@@ -216,8 +216,8 @@ type SignedBlockHeader struct {
 
 type SignedBlock struct {
 	SignedBlockHeader
-	Transactions    []TransactionReceipt `json:"transactions"`
-	BlockExtensions []*Extension         `json:"block_extensions"`
+	Transactions    []Transaction `json:"transactions"`
+	BlockExtensions []*Extension  `json:"block_extensions"`
 }
 
 func (m *SignedBlock) String() string {
@@ -290,7 +290,7 @@ func (t *TransactionWithID) UnmarshalJSON(data []byte) error {
 type IDListMode uint8
 
 const (
-	none IDListMode = iota
+	none              IDListMode = iota
 	catch_up
 	last_irr_catch_up
 	normal
