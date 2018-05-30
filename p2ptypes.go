@@ -250,7 +250,7 @@ type Trx struct {
 
 type TransactionReceipt struct {
 	TransactionReceiptHeader
-	Transaction TransactionWithID `json:"trx"`
+	Trx Trx `json:"trx"`
 }
 
 type TransactionWithID struct {
