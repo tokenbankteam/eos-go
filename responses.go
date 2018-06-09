@@ -35,7 +35,7 @@ type InfoResp struct {
 	HeadBlockTime            JSONTime    `json:"head_block_time"`             //  "2018-02-02T04:19:32"
 	HeadBlockProducer        AccountName `json:"head_block_producer"`         // "inita"
 
-	VirtualBlockCPULimit uint64 `json:"virtual_block_cpu_limit"`
+	VirtualBlockCPULimit string `json:"virtual_block_cpu_limit"`
 	VirtualBlockNetLimit uint64 `json:"virtual_block_net_limit"`
 	BlockCPULimit        uint64 `json:"block_cpu_limit"`
 	BlockNetLimit        uint64 `json:"block_net_limit"`
@@ -57,7 +57,7 @@ type BlockResp struct {
 
 type TransactionResp struct {
 	TransactionID string `json:"transaction_id"`
-	Transaction   struct {
+	Transaction struct {
 		Signatures            []ecc.Signature `json:"signatures"`
 		Compression           CompressionType `json:"compression"`
 		PackedContextFreeData HexBytes        `json:"packed_context_free_data"`
